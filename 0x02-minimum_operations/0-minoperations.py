@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 def minOperations(z):
     '''
     This function calculates the minimum number of operations required to achieve 'z' characters.
