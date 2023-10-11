@@ -26,7 +26,7 @@ def minOperations(z):
         if current_num == 0:
             #first copy all and paste resualt 
             current_num = chars_init
-            chars_init += clipboard
+            chars_init += current_num
             track_ops += 2
 
         elif z - chars_init > 0 and (z - chars_init) % chars_init == 0:
@@ -35,7 +35,7 @@ def minOperations(z):
             chars_init += current_num
             track_ops += 2
 
-        elif clipboard > 0:
+        elif current_num > 0:
             # paste
             chars_init += current_num
             track_ops += 1
