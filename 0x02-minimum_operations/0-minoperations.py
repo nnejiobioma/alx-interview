@@ -1,35 +1,43 @@
 #!/usr/bin/python3
+'''
+Code Challange, Calculated minimum number of 
+operations(track_ops) required
+'''
+
+
 def minOperations(z):
     '''
-    This function calculates the minimum number of operations required to achieve 'z' characters.
+    This is the operations required to achieve z
+    s characters. This returns fewest number of 
+    operations
 
     Args:
-        z: Number of 'z' characters to be achieved.
+        z: Number of s characters(chars_init)
 
-    Returns:
-        track_ops: Fewest number of operations required.
+    Return: Few number of operations(track_ops)
     '''
-    if not isinstance(z, int) or z < 1:
+    if not isinstance(z, int):
         return 0
-
     track_ops = 0  # Tracks operations
-    current_num = 1   # Initial characters
-    clipboard = 0
+    current_num = 0   # Stores number of characters
+    chars_init = 1  # Initial characters
 
-    while current_num < z:
-        if z - current_num >= current_num:
-            # Copy all and paste
-            clipboard = current_num
-            current_num += clipboard
+    while chars_init < z:
+        if current_num == 0:
+            #first copy all and paste resualt 
+            current_num = chars_init
+            chars_init += clipboard
             track_ops += 2
-        else:
-            # Paste
-            current_num += clipboard
+
+        elif z - chars_init > 0 and (z - chars_init) % chars_init == 0:
+            # copy all and paste
+            current_num = chars_init
+            chars_init += current_num
+            track_ops += 2
+
+        elif clipboard > 0:
+            # paste
+            chars_init += current_num
             track_ops += 1
 
     return track_ops
-
-# Example usage:
-z = 10
-operations = minOperations(z)
-print(f"Minimum operations to achieve {z} characters: {operations}")
